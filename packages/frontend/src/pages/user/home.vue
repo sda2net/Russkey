@@ -1,6 +1,6 @@
 <template>
-<MkSpacer :contentMax="narrow ? 800 : 1100">
-	<div ref="rootEl" class="ftskorzw" :class="{ wide: !narrow }" style="container-type: inline-size;">
+<MkSpacer :contentMax="narrow ? 800 : 1100" :inlineContainer="false">
+	<div ref="rootEl" class="ftskorzw" :class="{ wide: !narrow }">
 		<div class="main _gaps">
 			<!-- TODO -->
 			<!-- <div class="punished" v-if="user.isSuspended"><i class="ti ti-alert-triangle" style="margin-right: 8px;"></i> {{ i18n.ts.userSuspended }}</div> -->
@@ -358,6 +358,18 @@ onUnmounted(() => {
 						background-position: center;
 						box-shadow: 0 0 128px rgba(0, 0, 0, 0.5) inset;
 						will-change: background-position;
+
+						&::after {
+							content: "";
+							background-image: var(--blur, inherit);
+							position: fixed;
+							inset: 0;
+							background-size: cover;
+							background-position: center;
+							pointer-events: none;
+							opacity: 0.1;
+							filter: var(--blur, blur(10px));
+						}
 					}
 
 					> .fade {

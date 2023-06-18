@@ -1,6 +1,6 @@
 <template>
 <div :class="[$style.root, { [$style.rootMin]: forceSpacerMin }]">
-	<div :class="$style.content">
+	<div :class="[$style.content, { [$style.inlineContainer]: inlineContainer }]">
 		<slot></slot>
 	</div>
 </div>
@@ -14,10 +14,12 @@ const props = withDefaults(defineProps<{
 	contentMax?: number | null;
 	marginMin?: number;
 	marginMax?: number;
+	inlineContainer?: boolean;
 }>(), {
 	contentMax: null,
 	marginMin: 12,
 	marginMax: 24,
+	inlineContainer: true,
 });
 
 const forceSpacerMin = inject('forceSpacerMin', false) || deviceKind === 'smartphone';
@@ -35,7 +37,10 @@ const forceSpacerMin = inject('forceSpacerMin', false) || deviceKind === 'smartp
 .content {
 	margin: 0 auto;
 	max-width: v-bind('props.contentMax + "px"');
-	container-type: inline-size;
+
+	&.inlineContainer {
+		container-type: inline-size;
+	}
 }
 
 @container (max-width: 450px) {
