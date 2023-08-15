@@ -75,7 +75,7 @@ export class NodeinfoServerService {
 
 			return {
 				software: {
-					name: 'cherrypick',
+					name: 'Russkey',
 					version: this.config.version,
 					repository: meta.repositoryUrl,
 				},
