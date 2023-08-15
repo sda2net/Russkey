@@ -53,6 +53,7 @@ export const FILE_TYPE_BROWSERSAFE = [
 	'audio/x-m4a',
 	'video/3gpp',
 	'video/3gpp2',
+	'video/x-matroska',
 
 	'video/mpeg',
 	'audio/mpeg',
