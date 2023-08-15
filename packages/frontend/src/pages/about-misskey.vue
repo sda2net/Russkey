@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<div v-panel class="about">
 					<div ref="containerEl" class="container" :class="{ playing: easterEggEngine != null }">
 						<img src="/client-assets/about-icon.png" alt="" class="icon" draggable="false" @load="iconLoaded" @click="gravity"/>
-						<div class="cherrypick">CherryPick</div>
+						<div class="cherrypick">Russkey</div>
 						<div class="version" @click="whatIsNewCherryPick">v{{ version }}</div>
 						<span v-for="emoji in easterEggEmojis" :key="emoji.id" class="emoji" :data-physics-x="emoji.left" :data-physics-y="emoji.top" :class="{ _physics_circle_: !emoji.emoji.startsWith(':') }">
 							<MkCustomEmoji v-if="emoji.emoji[0] === ':'" class="emoji" :name="emoji.emoji" :normal="true" :noStyle="true"/>
@@ -25,12 +25,14 @@ SPDX-License-Identifier: AGPL-3.0-only
 					{{ i18n.ts._aboutMisskey.about }}<br><a href="https://misskey-hub.net/docs/misskey.html" target="_blank" class="_link">{{ i18n.ts.learnMore }}</a>
 				</div>
 				<div v-if="$i != null" style="text-align: center;">
+					<MkButton primary rounded inline @click="iLoveRusskey">I <Mfm text="$[jelly ❤]"/> #Russkey</MkButton>
+					<MkButton primary rounded inline @click="iLoveMisskey">I <Mfm text="$[jelly ❤]"/> #Misskey</MkButton>
 					<MkButton primary rounded inline @click="iLoveCherryPick">I <Mfm text="$[jelly ❤]"/> #CherryPick</MkButton>
 				</div>
 				<FormSection v-if="isKokonect">
-					<template #label>_KOKONECT_</template>
+					<template #label>Russkey</template>
 					<div class="_formLinks">
-						<FormLink to="https://status.kokonect.link" external>
+						<FormLink to="https://status.sda2.net" external>
 							<template #icon><i class="ti ti-activity"></i></template>
 							{{ i18n.ts._aboutMisskey._kokonect.serverStatus }}
 							<template #suffix>Server Status</template>
@@ -419,6 +421,20 @@ function gravity() {
 	if (!easterEggReady) return;
 	easterEggReady = false;
 	easterEggEngine = physics(containerEl);
+}
+
+function iLoveRusskey() {
+	os.post({
+		initialText: 'I $[jelly ❤] #Russkey',
+		instant: true,
+	});
+}
+
+function iLoveMisskey() {
+	os.post({
+		initialText: 'I $[jelly ❤] #Misskey',
+		instant: true,
+	});
 }
 
 function iLoveCherryPick() {
