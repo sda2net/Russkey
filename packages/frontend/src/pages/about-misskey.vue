@@ -155,6 +155,14 @@ SPDX-License-Identifier: AGPL-3.0-only
 								</span>
 							</span>
 						</a>
+						<a href="https://github.com/dev-aixel" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/142141355?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@dev-aixel
+								<span :class="$style.contributorClient">
+									<span :class="$style.cherry">Russ</span><span :class="$style.pick">key</span>
+								</span>
+							</span>
+						</a>
 					</div>
 					<template #caption><MkLink url="https://github.com/kokonect-link/cherrypick/graphs/contributors">{{ i18n.ts._aboutMisskey.allContributors }}</MkLink></template>
 				</FormSection>
