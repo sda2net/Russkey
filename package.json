@@ -1,10 +1,10 @@
 {
-	"name": "cherrypick",
-	"version": "0.1",
+	"name": "russkey",
+	"version": "0.1S",
 	"codename": "nasubi",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kokonect-link/cherrypick.git"
+		"url": "https://github.com/sda2net/Russkey.git"
 	},
 	"packageManager": "pnpm@8.6.10",
 	"workspaces": [
