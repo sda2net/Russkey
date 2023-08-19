@@ -48,6 +48,61 @@ SPDX-License-Identifier: AGPL-3.0-only
 								<span :class="$style.contributorClient">
 									<span :class="$style.cherry">Russ</span><span :class="$style.pick">key</span>
 								</span>
+							</span>		
+							<a href="https://github.com/syuilo" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/4439005?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@syuilo
+								<span :class="$style.contributorClient">
+									<span :class="$style.misskey">Misskey</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/tamaina" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/7973572?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@tamaina
+								<span :class="$style.contributorClient">
+									<span :class="$style.misskey">Misskey</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/acid-chicken" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/20679825?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@acid-chicken
+								<span :class="$style.contributorClient">
+									<span :class="$style.misskey">Misskey</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/rinsuki" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/6533808?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@rinsuki
+								<span :class="$style.contributorClient">
+									<span :class="$style.misskey">Misskey</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/mei23" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/30769358?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@mei23
+								<span :class="$style.contributorClient">
+									<span :class="$style.misskey">Misskey</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/robflop" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/8159402?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@robflop
+								<span :class="$style.contributorClient">
+									<span :class="$style.misskey">Misskey</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/noridev" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/11006910?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@noridev
+								<span :class="$style.contributorClient">
+									<span :class="$style.cherry">Cherry</span><span :class="$style.pick">Pick</span>
+								</span>
 							</span>
 						</a>
 					</div>
