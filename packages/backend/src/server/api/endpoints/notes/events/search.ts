@@ -5,7 +5,7 @@
 
 import { Inject, Injectable } from '@nestjs/common';
 import { Brackets } from 'typeorm';
-import { Event } from '@/models/entities/Event.js';
+import { MiEvent } from '@/models/entities/Event.js';
 import type { NotesRepository } from '@/models/index.js';
 import { Endpoint } from '@/server/api/endpoint-base.js';
 import { QueryService } from '@/core/QueryService.js';
@@ -77,9 +77,8 @@ function notAlphaNumeric(s: string): boolean {
 	return null !== s.match(/[^\w]/);
 }
 
-// eslint-disable-next-line import/no-default-export
 @Injectable()
-export default class extends Endpoint<typeof meta, typeof paramDef> {
+export default class extends Endpoint<typeof meta, typeof paramDef> { // eslint-disable-line import/no-default-export
 	constructor(
 		@Inject(DI.config)
 		private config: Config,
@@ -112,7 +111,7 @@ export default class extends Endpoint<typeof meta, typeof paramDef> {
 			}
 
 			query
-				.innerJoinAndSelect(Event, 'event', 'event.noteId = note.id')
+				.innerJoinAndSelect(MiEvent, 'event', 'event.noteId = note.id')
 				.innerJoinAndSelect('note.user', 'user');
 
 			if (ps.query && ps.query.trim() !== '') {
