@@ -42,14 +42,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<FormSection>
 					<template #label>{{ i18n.ts._aboutMisskey.contributors }}</template>
 					<div :class="$style.contributors">
-						<a href="https://github.com/dev-aixel" target="_blank" :class="$style.contributor">
-							<img src="https://avatars.githubusercontent.com/u/142141355?v=4" :class="$style.contributorAvatar">
-							<span :class="$style.contributorUsername">@dev-aixel
-								<span :class="$style.contributorClient">
-									<span :class="$style.cherry">Russ</span><span :class="$style.pick">key</span>
-								</span>
-							</span>		
-							<a href="https://github.com/syuilo" target="_blank" :class="$style.contributor">
+						<a href="https://github.com/syuilo" target="_blank" :class="$style.contributor">
 							<img src="https://avatars.githubusercontent.com/u/4439005?v=4" :class="$style.contributorAvatar">
 							<span :class="$style.contributorUsername">@syuilo
 								<span :class="$style.contributorClient">
@@ -102,6 +95,14 @@ SPDX-License-Identifier: AGPL-3.0-only
 							<span :class="$style.contributorUsername">@noridev
 								<span :class="$style.contributorClient">
 									<span :class="$style.cherry">Cherry</span><span :class="$style.pick">Pick</span>
+								</span>
+							</span>
+						</a>
+						<a href="https://github.com/dev-aixel" target="_blank" :class="$style.contributor">
+							<img src="https://avatars.githubusercontent.com/u/142141355?v=4" :class="$style.contributorAvatar">
+							<span :class="$style.contributorUsername">@dev-aixel
+								<span :class="$style.contributorClient">
+									<span :class="$style.cherry">Russ</span><span :class="$style.pick">key</span>
 								</span>
 							</span>
 						</a>
