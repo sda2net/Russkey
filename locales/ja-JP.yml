@@ -734,6 +734,7 @@ createNewClip: "新しいクリップを作成"
 unclip: "クリップ解除"
 confirmToUnclipAlreadyClippedNote: "このノートはすでにクリップ「{name}」に含まれています。ノートをこのクリップから除外しますか？"
 public: "パブリック"
+private: "非公開"
 i18nInfo: "Russkeyは有志によって様々な言語に翻訳されています。{link}で翻訳に協力できます。"
 manageAccessTokens: "アクセストークンの管理"
 accountInfo: "アカウント情報"
@@ -1167,6 +1168,14 @@ additionalPermissionsForFlash: "Playへの追加許可"
 thisFlashRequiresTheFollowingPermissions: "このPlayは以下の権限を要求しています"
 doYouWantToAllowThisPlayToAccessYourAccount: "このPlayによるアカウントへのアクセスを許可しますか？"
 translateProfile: "プロフィールを翻訳する"
+
+_tlTutorial:
+  step1_1: '{icon} ホームタイムラインは、あなたがフォローしているアカウントの投稿を見られます。'
+  step1_2: '{icon} ローカルタイムラインでは、このサーバーにいるみんなの投稿を見られます。'
+  step1_3: '{icon} メディアタイムラインは、このサーバーにいるみんなの投稿のうち、メディア(写真、動画)を含む投稿のみを見ることができます。'
+  step1_4: '{icon} ソーシャルタイムラインでは、ホームタイムラインとローカルタイムラインの投稿が両方表示されます。'
+  step1_5: '{icon} キャットタイムラインでは、このサーバーに接続されているすべてのサーバーのうち、キャットを有効にしたユーザーの投稿を見ることができます。'
+  step1_6: '{icon} グローバルタイムラインでは、このサーバーに接続されているすべてのサーバーからの投稿を見られます。'
 
 _announcement:
   forExistingUsers: "既存ユーザーのみ"
@@ -2013,6 +2022,10 @@ _permissions:
   "write:gallery": "ギャラリーを操作する"
   "read:gallery-likes": "ギャラリーのいいねを見る"
   "write:gallery-likes": "ギャラリーのいいねを操作する"
+  "read:flash": "Playを見る"
+  "write:flash": "Playを操作する"
+  "read:flash-likes": "Playのいいねを見る"
+  "write:flash-likes": "Playのいいねを操作する"
 
 _auth:
   shareAccessTitle: "アプリへのアクセス許可"

@@ -344,7 +344,7 @@ definePageMetadata({
 	font-size: 11px;
 	font-weight: bold;
 
-	> .cherrypick {
+	> .misskey {
 		color: #86b300;
 	}
 

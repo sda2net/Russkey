@@ -5,63 +5,65 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 <template>
 <MkStickyContainer>
-	<template #header>
-		<MkPageHeader/>
-	</template>
+	<template #header><MkPageHeader/></template>
 	<div
 		ref="rootEl"
 		:class="$style.root"
 		@dragover.prevent.stop="onDragover"
 		@drop.prevent.stop="onDrop"
 	>
-		<div :class="$style.body">
-			<MkPagination v-if="pagination" ref="pagingComponent" :key="userAcct || groupId" :pagination="pagination">
-				<template #empty>
-					<div class="_fullinfo">
-						<img src="https://xn--931a.moe/assets/info.jpg" class="_ghost"/>
-						<div>{{ i18n.ts.noMessagesYet }}</div>
-					</div>
-				</template>
-				<template #default="{ items: messages, fetching: pFetching }">
-					<MkDateSeparatedList
-						v-if="messages.length > 0"
-						v-slot="{ item: message }"
-						:class="{ [$style.messages]: true, 'deny-move-transition': pFetching }"
-						:items="messages"
-						direction="up"
-						reversed
-					>
-						<XMessage :key="message.id" :message="message" :isGroup="group != null"/>
-					</MkDateSeparatedList>
-				</template>
-			</MkPagination>
-		</div>
+    <MkSpacer :contentMax="800">
+      <div :class="$style.body">
+        <MkPagination v-if="pagination" ref="pagingComponent" :key="userAcct || groupId" :pagination="pagination">
+          <template #empty>
+            <div class="_fullinfo">
+              <img src="https://xn--931a.moe/assets/info.jpg" class="_ghost"/>
+              <div>{{ i18n.ts.noMessagesYet }}</div>
+            </div>
+          </template>
+          <template #default="{ items: messages, fetching: pFetching }">
+            <MkDateSeparatedList
+                v-if="messages.length > 0"
+                v-slot="{ item: message }"
+                :class="{ [$style.messages]: true, 'deny-move-transition': pFetching }"
+                :items="messages"
+                direction="up"
+                reversed
+            >
+              <XMessage :key="message.id" :message="message" :isGroup="group != null"/>
+            </MkDateSeparatedList>
+          </template>
+        </MkPagination>
+      </div>
+    </MkSpacer>
 	</div>
 	<template #footer>
-		<div :class="$style.footer">
-			<div v-if="typers.length > 0" :class="$style.typers">
-				<I18n :src="i18n.ts.typingUsers" textTag="span">
-					<template #users>
-						<b v-for="typer in typers" :key="typer.id" :class="$style.user">{{ typer.username }}</b>
-					</template>
-				</I18n>
-				<MkEllipsis/>
-			</div>
-			<Transition :name="animation ? 'fade' : ''">
-				<div v-show="showIndicator" :class="$style.newMessage">
-					<button class="_buttonPrimary" :class="$style.newMessageButton" @click="onIndicatorClick">
-						<i class="ti ti-circle-arrow-down-filled" :class="$style.newMessageIcon"></i>{{ i18n.ts.newMessageExists }}
-					</button>
-				</div>
-			</Transition>
-			<XForm v-if="!fetching" ref="formEl" :user="user" :group="group" :class="$style.form"/>
-		</div>
+    <div :class="$style.footerSpacer">
+      <div :class="$style.footer">
+        <div v-if="typers.length > 0" :class="$style.typers">
+          <I18n :src="i18n.ts.typingUsers" textTag="span">
+            <template #users>
+              <b v-for="typer in typers" :key="typer.id" :class="$style.user">{{ typer.username }}</b>
+            </template>
+          </I18n>
+          <MkEllipsis/>
+        </div>
+        <Transition :name="animation ? 'fade' : ''">
+          <div v-show="showIndicator" :class="$style.newMessage">
+            <button class="_buttonPrimary" :class="$style.newMessageButton" @click="onIndicatorClick">
+              <i class="ti ti-circle-arrow-down-filled" :class="$style.newMessageIcon"></i>{{ i18n.ts.newMessageExists }}
+            </button>
+          </div>
+        </Transition>
+        <XForm v-if="!fetching" ref="formEl" :user="user" :group="group" :class="$style.form"/>
+      </div>
+    </div>
 	</template>
 </MkStickyContainer>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, nextTick, onBeforeUnmount, watch } from 'vue';
+import { computed, onMounted, nextTick, onBeforeUnmount, watch, shallowRef } from 'vue';
 import * as Misskey from 'cherrypick-js';
 import * as Acct from 'cherrypick-js/built/acct';
 import XMessage from './messaging-room.message.vue';
@@ -84,7 +86,7 @@ const props = defineProps<{
 
 let rootEl = $shallowRef<HTMLDivElement>();
 let formEl = $shallowRef<InstanceType<typeof XForm>>();
-let pagingComponent = $shallowRef<InstanceType<typeof MkPagination>>();
+const pagingComponent = shallowRef<InstanceType<typeof MkPagination>>();
 
 let fetching = $ref(true);
 let user: Misskey.entities.UserDetailed | null = $ref(null);
@@ -151,7 +153,7 @@ async function fetch() {
 	document.addEventListener('visibilitychange', onVisibilitychange);
 
 	nextTick(() => {
-		pagingComponent.inited.then(() => {
+		pagingComponent.value.inited.then(() => {
 			thisScrollToBottom();
 		});
 		window.setTimeout(() => {
@@ -216,7 +218,7 @@ function onMessage(message) {
 
 	const _isBottom = isBottomVisible(rootEl, 64);
 
-	pagingComponent.prepend(message);
+	pagingComponent.value.prepend(message);
 	if (message.userId !== $i?.id && !document.hidden) {
 		connection?.send('read', {
 			id: message.id,
@@ -238,21 +240,21 @@ function onRead(x) {
 	if (user) {
 		if (!Array.isArray(x)) x = [x];
 		for (const id of x) {
-			if (pagingComponent.items.some(y => y.id === id)) {
-				const exist = pagingComponent.items.map(y => y.id).indexOf(id);
-				pagingComponent.items[exist] = {
-					...pagingComponent.items[exist],
+			if (pagingComponent.value.items.some(y => y.id === id)) {
+				const exist = pagingComponent.value.items.map(y => y.id).indexOf(id);
+				pagingComponent.value.items[exist] = {
+					...pagingComponent.value.items[exist],
 					isRead: true,
 				};
 			}
 		}
 	} else if (group) {
 		for (const id of x.ids) {
-			if (pagingComponent.items.some(y => y.id === id)) {
-				const exist = pagingComponent.items.map(y => y.id).indexOf(id);
-				pagingComponent.items[exist] = {
-					...pagingComponent.items[exist],
-					reads: [...pagingComponent.items[exist].reads, x.userId],
+			if (pagingComponent.value.items.some(y => y.id === id)) {
+				const exist = pagingComponent.value.items.map(y => y.id).indexOf(id);
+				pagingComponent.value.items[exist] = {
+					...pagingComponent.value.items[exist],
+					reads: [...pagingComponent.value.items[exist].reads, x.userId],
 				};
 			}
 		}
@@ -260,9 +262,9 @@ function onRead(x) {
 }
 
 function onDeleted(id) {
-	const msg = pagingComponent.items.find(m => m.id === id);
+	const msg = pagingComponent.value.items.find(m => m.id === id);
 	if (msg) {
-		pagingComponent.items = pagingComponent.items.filter(m => m.id !== msg.id);
+		pagingComponent.value.items = pagingComponent.value.items.filter(m => m.id !== msg.id);
 	}
 }
 
@@ -288,7 +290,7 @@ function notifyNewMessage() {
 
 function onVisibilitychange() {
 	if (document.hidden) return;
-	for (const message of pagingComponent.items) {
+	for (const message of pagingComponent.value.items) {
 		if (message.userId !== $i?.id && !message.isRead) {
 			connection?.send('read', {
 				id: message.id,
@@ -368,6 +370,10 @@ definePageMetadata(computed(() => !fetching ? user ? {
 	}
 }
 
+.footerSpacer {
+  padding: 20px;
+}
+
 .footer {
 	width: 100%;
 	position: sticky;
@@ -415,14 +421,23 @@ definePageMetadata(computed(() => !fetching ? user ? {
 .form {
 	max-height: 12em;
 	overflow-y: scroll;
-	border-top: solid 0.5px var(--divider);
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+	// border-top: solid 0.5px var(--divider);
+	// border-bottom-left-radius: 0;
+	// border-bottom-right-radius: 0;
+  border-radius: 15px;
 }
 
 @container (max-width: 500px) {
+  .footerSpacer {
+    padding: initial;
+  }
+
 	.footer {
 		margin-top: calc(50px + env(safe-area-inset-bottom));
 	}
+
+  .form {
+    border-radius: 0;
+  }
 }
 </style>

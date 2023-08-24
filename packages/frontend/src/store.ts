@@ -51,6 +51,30 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'account',
 		default: 0,
 	},
+	tlHomeHintClosed: {
+		where: "device",
+		default: false,
+	},
+	tlLocalHintClosed: {
+		where: "device",
+		default: false,
+	},
+	tlMediaHintClosed: {
+		where: "device",
+		default: false,
+	},
+	tlSocialHintClosed: {
+		where: "device",
+		default: false,
+	},
+	tlCatHintClosed: {
+		where: "device",
+		default: false,
+	},
+	tlGlobalHintClosed: {
+		where: "device",
+		default: false,
+	},
 	keepCw: {
 		where: 'account',
 		default: true,
@@ -119,7 +143,6 @@ export const defaultStore = markRaw(new Storage('base', {
 			'messaging',
 			'favorites',
 			'followRequests',
-			'-',
 			'explore',
 			'search',
 			'announcements',
@@ -131,6 +154,10 @@ export const defaultStore = markRaw(new Storage('base', {
 	},
 	localOnly: {
 		where: 'deviceAccount',
+		default: false,
+	},
+	showPreview: {
+		where: 'device',
 		default: false,
 	},
 	statusbars: {
@@ -456,14 +483,6 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'account',
 		default: true,
 	},
-	rememberPostFormToggleStateEnabled: {
-		where: 'account',
-		default: true,
-	},
-	showPostFormPreview: {
-		where: 'device',
-		default: false,
-	},
 	reactableRemoteReactionEnabled: {
 		where: 'account',
 		default: true,
@@ -519,7 +538,7 @@ interface Watcher {
  */
 import { miLocalStorage } from './local-storage';
 import lightTheme from '@/themes/l-cherrypick.json5';
-import darkTheme from '@/themes/d-cherrypick.json5';
+import darkTheme from '@/themes/d-rosepinemoon.json5';
 import { Note, UserDetailed, Page } from 'cherrypick-js/built/entities';
 
 export class ColdDeviceStorage {

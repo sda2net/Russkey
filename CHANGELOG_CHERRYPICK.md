@@ -30,13 +30,17 @@
 - 노트 작성 폼의 '노트' 버튼을 '냥!'으로 변경할 수 있는 옵션 추가
 - 노트의 리액션을 삭제하지 않고도 리액션 버튼을 눌러 리액션을 변경할 수 있도록 (misskey-dev/misskey#11157)
 - 리노트를 신고할 수 있도록 (misskey-dev/misskey#11466)
+- Rosé Pine 테마 추가 ([rose-pine/misskey](https://github.com/rose-pine/misskey))
+- 타임라인 소개 추가
 
 ### Client
 - about-misskey 페이지에서 클라이언트 버전을 누르면 변경 사항을 볼 수 있음
 - 새로운 신고가 있는 경우, 네비게이션 바의 제어판 아이콘과 제어판 페이지의 신고 섹션에 점을 표시
 - 스크롤 시 요소 표시 기능을 Friendly 이외의 UI에도 대응
+- 기본 다크 테마를 'Rosé Pine Moon'으로 변경
 - Enhance: '제어판 - 신고' 페이지의 버튼 가독성 향상
 - Enhance: '모달에 흐림 효과 사용' 옵션이 비활성화된 경우, 이미지를 탭하여 표시할 때 표시되는 배경을 어둡게 조정
+- Enhance: 대화 페이지 디자인 개선
 - Fix: (Friendly) 흐림 효과를 사용할 때 하단 내비게이션 바의 가독성이 매우 떨어지는 문제
 - Fix: (Friendly) 위젯 버튼에서 'UI 애니메이션 줄이기' 옵션이 적용되지 않는 문제
 - Fix: (Friendly) 스크롤을 해도 위젯 버튼이 숨겨지지 않는 문제
@@ -45,6 +49,7 @@
 - Fix: 환경설정 백업 시 일부 설정이 누락되어 백업되는 문제
 - Fix: 다른 서버의 사용자에게 '메시지 보내기' 시 초기 텍스트 멘션이 잘못 표시되는 문제 수정 (misskey-dev/misskey#11721)
 - Fix: Misskey 플러그인 설치 시 AiScript 버전 확인이 0.14.0 이후 버전에서 지원되지 않는 문제 수정 (misskey-dev/misskey#11729)
+- Fix: '대화'에서 Autocomplete를 사용할 수 없음
 
 ### Server
 - Nodeinfo의 Software 이름을 CherryPick이 아닌 다른 이름으로 변경할 때 관련 주석 추가
