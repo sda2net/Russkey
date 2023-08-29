@@ -421,8 +421,8 @@ export class UserEntityService implements OnModuleInit {
 				birthday: profile!.birthday,
 				lang: profile!.lang,
 				fields: profile!.fields,
-				followersCount: followersCount ?? 0,
-				followingCount: followingCount ?? 0,
+				followersCount: followersCount ?? '?',
+				followingCount: followingCount ?? '?',
 				notesCount: user.notesCount,
 				pinnedNoteIds: pins.map(pin => pin.noteId),
 				pinnedNotes: this.noteEntityService.packMany(pins.map(pin => pin.note!), me, {
@@ -471,6 +471,7 @@ export class UserEntityService implements OnModuleInit {
 				preventAiLearning: profile!.preventAiLearning,
 				isExplorable: user.isExplorable,
 				isDeleted: user.isDeleted,
+				twoFactorBackupCodesStock: profile?.twoFactorBackupSecret?.length === 5 ? 'full' : (profile?.twoFactorBackupSecret?.length ?? 0) > 0 ? 'partial' : 'none',
 				hideOnlineStatus: user.hideOnlineStatus,
 				hasUnreadSpecifiedNotes: this.noteUnreadsRepository.count({
 					where: { userId: user.id, isSpecified: true },
