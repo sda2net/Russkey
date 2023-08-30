@@ -58,7 +58,7 @@ export function stealMenu(note: Note, el: HTMLElement) {
 					channelId: note.channelId,
 				}).then(() => {
 					if (nextNumericOnesPlace !== 4) return;
-					playFile('shrimpia/4', 0.5);
+					playFile('syuilo/n-cea-4va', 0.5);
 				});
 			},
 		});
@@ -66,44 +66,8 @@ export function stealMenu(note: Note, el: HTMLElement) {
 
 	if (defaultStore.state.stealEnabled) {
 		menuItems.push(...[{
-			icon: 'ti ti-swipe',
-			text: 'パクる',
-			action: async () => {
-				if (!note.text) return;
-				if (!defaultStore.state.stealConfirmed) {
-					const { canceled } = await confirm({
-						type: 'warning',
-						text: 'このノートをパクります。本文をコピーして投稿するため、相手に迷惑がかからないことを確認する必要があります。\n本当に投稿しますか？',
-					});
-					if (canceled) return;
-				}
-				defaultStore.set('stealConfirmed', true);
-				if (note.visibility === 'followers' || note.visibility === 'specified') {
-					const { canceled } = await confirm({
-						type: 'warning',
-						text: `このノートは公開範囲を「${i18n.ts._visibility[note.visibility]}」に設定しているため、パクるべきではないかもしれません。それでも続行しますか？`,
-					});
-					if (canceled) return;
-				}
-				const visibility = defaultStore.state.defaultNumberQuoteVisibility === 'inherits'
-					? note.visibility
-					: defaultStore.state.defaultNumberQuoteVisibility;
-				const localOnly = defaultStore.state.defaultNumberQuoteVisibility === 'inherits'
-					? note.localOnly
-					: defaultStore.state.defaultNumberQuoteLocalOnly;
-				api('notes/create', {
-					text: note.text,
-					visibility: visibility as never,
-					localOnly,
-					renoteId: note.renoteId,
-					replyId: note.replyId,
-					cw: note.cw,
-					channelId: note.channelId,
-				});
-			},
-		}, {
 			icon: 'ti ti-edit',
-			text: '編集してパクる',
+			text: 'パクる',
 			action: async () => {
 				if (!note.text) return;
 				const visibility = defaultStore.state.defaultNumberQuoteVisibility === 'inherits'
