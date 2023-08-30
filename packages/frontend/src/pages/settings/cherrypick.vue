@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: syuilo and noridev and other misskey, cherrypick contributors
+SPDX-FileCopyrightText: syuilo and noridev and other misskey, cherrypick , russkey contributors
 SPDX-License-Identifier: AGPL-3.0-only
 -->
 
@@ -27,6 +27,18 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<MkSwitch v-model="showRenoteConfirmPopup">
 					<template #label>{{ i18n.ts.showRenoteConfirmPopup }}</template>
 				</MkSwitch>
+				<MkSwitch v-model="stealEnabled">
+				パクる機能
+				<template #caption>
+					ノートをコピーしてそのまま投稿する機能。
+				</template>
+			</MkSwitch>
+			<MkSwitch v-model="numberQuoteEnabled">
+				数字引用機能
+				<template #caption>
+					ノートをコピーした上で末尾に数字をつけて投稿する機能。数字が本文の末尾にある場合はそれ+1、なければ「2」になります。
+				</template>
+			</MkSwitch>
 			</div>
 
       <div>
@@ -73,6 +85,8 @@ import * as os from '@/os';
 import { unisonReload } from '@/scripts/unison-reload';
 import { i18n } from '@/i18n';
 import { definePageMetadata } from '@/scripts/page-metadata';
+import {Note, User} from "cherrypick-js/built/entities";
+
 
 async function reloadAsk() {
 	const { canceled } = await os.confirm({
@@ -94,6 +108,8 @@ const showFollowingMessageInsteadOfButtonEnabled = computed(defaultStore.makeGet
 const mobileTimelineHeaderChange = computed(defaultStore.makeGetterSetter('mobileTimelineHeaderChange'));
 const displayHeaderNavBarWhenScroll = computed(defaultStore.makeGetterSetter('displayHeaderNavBarWhenScroll'));
 const renameTheButtonInPostFormToNya = computed(defaultStore.makeGetterSetter('renameTheButtonInPostFormToNya'));
+const stealEnabled = computed(defaultStore.makeGetterSetter('stealEnabled'));
+const numberQuoteEnabled = computed(defaultStore.makeGetterSetter('numberQuoteEnabled'));
 
 watch([
 	infoButtonForNoteActionsEnabled,
