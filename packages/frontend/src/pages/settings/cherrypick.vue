@@ -114,6 +114,8 @@ const numberQuoteEnabled = computed(defaultStore.makeGetterSetter('numberQuoteEn
 watch([
 	infoButtonForNoteActionsEnabled,
 	reactableRemoteReactionEnabled,
+	stealEnabled,
+	numberQuoteEnabled,
 ], async () => {
 	await reloadAsk();
 });

@@ -154,6 +154,9 @@ SPDX-License-Identifier: AGPL-3.0-only
       <button v-if="appearNote.myReaction != null && appearNote.reactionAcceptance == 'likeOnly'" ref="reactButton" :class="[$style.noteFooterButton, $style.reacted]" class="_button" @click="undoReact(appearNote)">
         <i class="ti ti-heart-minus"></i>
 			</button>
+			<button v-if="stealButtonVisible" ref="stealButton" class="button _button" :class="$style.noteFooterButton" @mousedown="stealMenu(appearNote, stealButton)">
+				<i class="ti ti-swipe"></i>
+			</button>
 			<button v-if="canRenote" v-tooltip="i18n.ts.quote" class="_button" :class="$style.noteFooterButton" @mousedown="quote()"><i class="ti ti-quote"></i></button>
 			<button v-if="defaultStore.state.showClipButtonInNoteFooter" ref="clipButton" v-tooltip="i18n.ts.clip" class="_button" :class="$style.noteFooterButton" @mousedown="clip()">
 				<i class="ti ti-paperclip"></i>
@@ -255,6 +258,7 @@ const showTicker = (defaultStore.state.instanceTicker === 'always') || (defaultS
 const conversation = ref<misskey.entities.Note[]>([]);
 const replies = ref<misskey.entities.Note[]>([]);
 const canRenote = computed(() => ['public', 'home'].includes(appearNote.visibility) || appearNote.userId === $i.id);
+const stealButtonVisible = appearNote.text && (defaultStore.state.numberQuoteEnabled || defaultStore.state.stealEnabled);
 
 const keymap = {
 	'r': () => reply(true),

@@ -154,6 +154,9 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<button ref="menuButton" v-tooltip="i18n.ts.more" :class="$style.footerButton" class="_button" @mousedown="menu()">
 					<i class="ti ti-dots"></i>
 				</button>
+				<button v-if="stealButtonVisible" ref="stealButton" :class="$style.footerButton" class="_button" @mousedown="stealMenu(appearNote, stealButton)">
+					<i class="ti ti-swipe"></i>
+				</button>
 			</footer>
 		</div>
 	</article>
@@ -257,6 +260,7 @@ const muted = ref(checkWordMute(appearNote, $i, defaultStore.state.mutedWords));
 const translation = ref<any>(null);
 const translating = ref(false);
 const canRenote = computed(() => ['public', 'home'].includes(appearNote.visibility) || appearNote.userId === $i.id);
+const stealButtonVisible = appearNote.text && (defaultStore.state.numberQuoteEnabled || defaultStore.state.stealEnabled);
 let renoteCollapsed = $ref(defaultStore.state.collapseRenotes && isRenote && (($i && ($i.id === note.userId || $i.id === appearNote.userId)) || (appearNote.myReaction != null)));
 
 const keymap = {

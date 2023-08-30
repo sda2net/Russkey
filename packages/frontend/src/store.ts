@@ -509,6 +509,15 @@ export const defaultStore = markRaw(new Storage('base', {
 		where: 'device',
 		default: true,
 	},
+	//パクる機能など
+	numberQuoteEnabled: {
+		where: 'account',
+		default: false,
+	},
+	stealEnabled: {
+		where: 'account',
+		default: false,
+	},
 	// #endregion
 }));
 
