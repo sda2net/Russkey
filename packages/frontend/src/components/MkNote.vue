@@ -210,6 +210,7 @@ import { mainRouter } from '@/router';
 import { notePage } from '@/filters/note';
 import { miLocalStorage } from '@/local-storage';
 import { instance } from '@/instance';
+import { stealMenu } from '@/scripts/steal-menu';
 
 let showEl = $ref(false);
 

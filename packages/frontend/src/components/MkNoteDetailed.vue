@@ -212,6 +212,7 @@ import MkRippleEffect from '@/components/MkRippleEffect.vue';
 import { showMovedDialog } from '@/scripts/show-moved-dialog';
 import { miLocalStorage } from '@/local-storage';
 import { instance } from '@/instance';
+import { stealMenu } from '@/scripts/steal-menu';
 
 const props = defineProps<{
 	note: misskey.entities.Note;
