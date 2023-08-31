@@ -246,6 +246,7 @@ const renoteButton = shallowRef<HTMLElement>();
 const renoteTime = shallowRef<HTMLElement>();
 const reactButton = shallowRef<HTMLElement>();
 const heartReactButton = shallowRef<HTMLElement>();
+const stealButton = shallowRef<HTMLElement>();
 const clipButton = shallowRef<HTMLElement>();
 let appearNote = $computed(() => isRenote ? note.renote as misskey.entities.Note : note);
 const isMyRenote = $i && ($i.id === note.userId);
